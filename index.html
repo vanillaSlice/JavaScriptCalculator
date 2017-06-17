@@ -6,12 +6,57 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JavaScript Calculator</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Sarpanch">
   <link rel="stylesheet" type="text/css" href="reset.css">
   <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 
 <body>
-
+  <h1>JavaScript Calculator</h1>
+  <div id="calculator">
+    <div id="screen">
+      <p id="result">0</p>
+      <p id="history">0</p>
+    </div>
+    <div id="buttons">
+      <div class="row">
+        <button type="button" id="ac" value="ac">AC</button>
+        <button type="button" id="ce" value="ce">CE</button>
+        <button type="button" id="divide" value="÷">÷</button>
+        <button type="button" id="multiply" value="×">×</button>
+      </div>
+      <div class="row">
+        <button type="button" id="seven" value="7">7</button>
+        <button type="button" id="eight" value="8">8</button>
+        <button type="button" id="nine" value="9">9</button>
+        <button type="button" id="minus" value="−">−</button>
+      </div>
+      <div class="row">
+        <button type="button" id="four" value="4">4</button>
+        <button type="button" id="five" value="5">5</button>
+        <button type="button" id="six" value="6">6</button>
+        <button type="button" id="plus" value="+">+</button>
+      </div>
+      <div class="row">
+        <div class="col-3">
+          <div class="row">
+            <button type="button" id="one" value="1">1</button>
+            <button type="button" id="two" value="2">2</button>
+            <button type="button" id="three" value="3">3</button>
+          </div>
+          <div class="row">
+            <button type="button" id="zero" value="0">0</button>
+            <button type="button" id="decimal-point" value=".">.</button>
+          </div>
+        </div>
+        <div class="col-1">
+          <div class="row">
+            <button type="button" id="equals" value="=">=</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="main.js"></script>
 </body>
 
