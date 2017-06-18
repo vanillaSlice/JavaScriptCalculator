@@ -12,46 +12,84 @@
 </head>
 
 <body>
-  <h1>JavaScript Calculator</h1>
-  <div id="calculator">
-    <div id="screen">
-      <p id="result">0</p>
-      <p id="history">0</p>
-    </div>
-    <div id="buttons">
-      <div class="row">
-        <button type="button" id="ac" value="ac">AC</button>
-        <button type="button" id="ce" value="ce">CE</button>
-        <button type="button" id="divide" value="÷">÷</button>
-        <button type="button" id="multiply" value="×">×</button>
+  <div class="container">
+    <h1>JavaScript Calculator</h1>
+    <div id="calculator">
+      <div id="screen">
+        <p id="result">0</p>
+        <p id="history">0</p>
       </div>
-      <div class="row">
-        <button type="button" id="seven" value="7">7</button>
-        <button type="button" id="eight" value="8">8</button>
-        <button type="button" id="nine" value="9">9</button>
-        <button type="button" id="minus" value="−">−</button>
-      </div>
-      <div class="row">
-        <button type="button" id="four" value="4">4</button>
-        <button type="button" id="five" value="5">5</button>
-        <button type="button" id="six" value="6">6</button>
-        <button type="button" id="plus" value="+">+</button>
-      </div>
-      <div class="row">
-        <div class="col-3">
-          <div class="row">
-            <button type="button" id="one" value="1">1</button>
-            <button type="button" id="two" value="2">2</button>
-            <button type="button" id="three" value="3">3</button>
-          </div>
-          <div class="row">
-            <button type="button" id="zero" value="0">0</button>
-            <button type="button" id="decimal-point" value=".">.</button>
-          </div>
+      <div id="buttons">
+        <div class="row">
+          <span class="col-3">
+            <button type="button" id="ac" value="ac">AC</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="ce" value="ce">CE</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="divide" value="÷">÷</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="multiply" value="×">×</button>          
+          </span>
         </div>
-        <div class="col-1">
-          <div class="row">
-            <button type="button" id="equals" value="=">=</button>
+        <div class="row">
+          <span class="col-3">
+            <button type="button" id="seven" value="7">7</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="eight" value="8">8</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="nine" value="9">9</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="minus" value="−">−</button>
+          </span>
+        </div>
+        <div class="row">
+          <span class="col-3">
+            <button type="button" id="four" value="4">4</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="five" value="5">5</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="six" value="6">6</button>
+          </span>
+          <span class="col-3">
+            <button type="button" id="plus" value="+">+</button>
+          </span>
+        </div>
+        <div class="row">
+          <div class="col-9">
+            <div class="row">
+              <span class="col-4">
+                <button type="button" id="one" value="1">1</button>
+              </span>
+              <span class="col-4">
+                <button type="button" id="two" value="2">2</button>
+              </span>
+              <span class="col-4">
+                <button type="button" id="three" value="3">3</button>
+              </span>
+            </div>
+            <div class="row">
+              <span class="col-8">
+                <button type="button" id="zero" value="0">0</button>
+              </span>
+              <span class="col-4">
+                <button type="button" id="decimal-point" value=".">.</button>
+              </span>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <span class="col-12">
+                <button type="button" id="equals" value="=">=</button>
+              </span>
+            </div>
           </div>
         </div>
       </div>
