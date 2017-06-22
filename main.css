@@ -20,20 +20,33 @@ html {
 body {
   font-family: 'Sarpanch', sans-serif;
   background-color: #000;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
   text-align: center;
-  max-width: 100%;
   min-height: 100%;
   min-height: 100vh;
 }
 
 * {
   box-sizing: border-box;
+}
+
+
+/* Flex parents */
+
+body,
+.row,
+#right-keys,
+#equals-key {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
 }
 
 
@@ -114,6 +127,7 @@ button {
 main {
   margin: 0 auto;
   padding: 1.5rem;
+  max-width: 100%;
 }
 
 h1 {
@@ -132,20 +146,26 @@ h1 {
   margin: 1rem;
 }
 
+#history,
+#result {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  direction: rtl;
+}
+
 #result {
   margin-bottom: 1rem;
 }
 
-#keys {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: wrap;
-  flex-flow: wrap;
+.row {
+  width: 100%;
 }
 
 .key {
   width: 25%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 25%;
+  flex: 1 1 25%;
   padding: 1rem;
 }
 
@@ -156,59 +176,30 @@ button {
   background: none;
 }
 
-#anomalous-keys {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 100%;
-}
-
 #left-keys {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-flow: wrap;
-  flex-flow: wrap;
   width: 75%;
 }
 
 #left-keys .key {
   width: 33.33333%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 33.33333%;
+  flex: 1 1 33.33333%;
 }
 
 #left-keys #zero-key {
   width: 66.66666%;
+  -webkit-box-flex: 1;
+  -ms-flex: 1 1 66.66666%;
+  flex: 1 1 66.66666%;
 }
 
 #right-keys {
   width: 25%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
 }
 
 #right-keys .key {
   width: 100%;
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-#right-keys #equals {
-  -webkit-box-flex: 1;
-  -ms-flex-positive: 1;
-  flex-grow: 1;
-  -ms-flex-negative: 1;
-  flex-shrink: 1;
-  -ms-flex-preferred-size: 0;
-  flex-basis: 0;
 }
 
 
