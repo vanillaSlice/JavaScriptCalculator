@@ -56,12 +56,8 @@ h1 {
   font-size: 5rem;
 }
 
-#result {
-  font-size: 3.6rem;
-}
-
-#history {
-  font-size: 1.8rem;
+#display {
+  font-size: 4rem;
 }
 
 button {
@@ -72,7 +68,6 @@ button {
 /* Colours */
 
 h1,
-#result,
 button {
   color: #99ffff;
 }
@@ -81,12 +76,11 @@ h1 {
   text-shadow: 0 0 0.5rem #66ffff, 0 0 1rem #33ffff, 0 0 1.5rem #00ffff;
 }
 
-#result,
 button {
   text-shadow: 0 0 0.5rem #66ffff;
 }
 
-#history,
+#display,
 #ac,
 #ce {
   color: #ff66ff;
@@ -146,15 +140,8 @@ h1 {
   margin: 1rem;
 }
 
-#history,
-#result {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  direction: rtl;
-}
-
-#result {
-  margin-bottom: 1rem;
+#display {
+  overflow: scroll;
 }
 
 .row {
