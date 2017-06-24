@@ -3,109 +3,150 @@ window.addEventListener('load', function () {
   'use strict';
 
   var display = document.getElementById('display');
-  var input = ['0'];
+  var inputs = ['0'];
 
-  document.getElementById('ac').addEventListener('click', allCancel);
+  document.getElementById('ac').addEventListener('click', clearAll);
 
-  function allCancel() {
-    input = ['0'];
-    updateDisplay();
+  function clearAll() {
+    resetInputs();
+    displayInputs();
   }
 
-  function updateDisplay() {
-    display.innerText = input.join('');
+  function resetInputs() {
+    inputs = ['0'];
+  }
+
+  function displayInputs() {
+    display.innerText = inputs.join('');
   }
 
   document.getElementById('ce').addEventListener('click', clearEntry);
 
   function clearEntry() {
     if (hasMoreThanOneInput()) {
-      input.pop();
-      updateDisplay();
+      removeLastInput();
+      displayInputs();
     } else {
-      allCancel();
+      clearAll();
     }
   }
 
   function hasMoreThanOneInput() {
-    return input.length > 1;
+    return inputs.length > 1;
+  }
+
+  function removeLastInput() {
+    inputs.pop();
   }
 
   var numberButtons = document.getElementsByClassName('number');
   for (var i = 0, length = numberButtons.length; i < length; i++) {
-    numberButtons.item(i).addEventListener('click', appendNumberToDisplay);
+    numberButtons.item(i).addEventListener('click', appendNumber);
   }
 
-  function appendNumberToDisplay() {
+  function appendNumber() {
     var number = this.innerText;
-    var last = input[input.length - 1];
+    var last = getLastInput();
     if (isAnOperation(last)) {
-      input.push(number);
-    } else if (isZero(last)) {
-      input[input.length - 1] = number;
+      inputs.push(number);
+    } else if (last === '0') {
+      setLastInput(number);
     } else {
-      input[input.length - 1] += number;
+      appendToLastInput(number);
     }
-    updateDisplay();
+    displayInputs();
+  }
+
+  function getLastInput() {
+    return inputs[inputs.length - 1];
   }
 
   function isAnOperation(value) {
     return value === '÷' || value === '×' || value === '+' || value === '−';
   }
 
-  function isZero(value) {
-    return value === '0';
+  function setLastInput(value) {
+    inputs[inputs.length - 1] = value;
+  }
+
+  function appendToLastInput(value) {
+    inputs[inputs.length - 1] += value;
   }
 
   var operationButtons = document.getElementsByClassName('operation');
   for (i = 0, length = operationButtons.length; i < length; i++) {
-    operationButtons.item(i).addEventListener('click', appendOperationToDisplay);
+    operationButtons.item(i).addEventListener('click', appendOperation);
   }
 
-  function appendOperationToDisplay() {
+  function appendOperation() {
     var operation = this.innerText;
-    var last = input[input.length - 1];
-    if (isMinus(operation)) {
-      if (isZero(last) && !hasMoreThanOneInput()) {
-        input[0] = '−';
-      } else if (!isMinus(last)) {
-        input.push(operation);
-      }
-    } else if (!isAnOperation(last)) {
-      input.push(operation);
+    if (operation === '−') {
+      appendMinus();
+    } else if (!isAnOperation(getLastInput())) {
+      inputs.push(operation);
     }
-    updateDisplay();
+    displayInputs();
   }
 
-  function isMinus(value) {
-    return value === '−';
+  function appendMinus() {
+    var last = getLastInput();
+    if (last === '0' && !hasMoreThanOneInput()) {
+      inputs[0] = '−';
+    } else if (last !== '−') {
+      inputs.push('−');
+    }
   }
 
-  document.getElementById('decimal-point').addEventListener('click', function () {
-    var last = input[input.length - 1];
-    if (last.indexOf('.') === -1) {
-      input[input.length - 1] += '.';
-      updateDisplay();
+  document.getElementById('decimal-point').addEventListener('click', appendDecimalPoint);
+
+  function appendDecimalPoint() {
+    var last = getLastInput();
+    if (!containsDecimalPoint(last)) {
+      appendToLastInput('.');
+      displayInputs();
     }
-  });
+  }
 
-  document.getElementById('equals').addEventListener('click', calculate);
+  function containsDecimalPoint(value) {
+    return value.indexOf('.') !== -1
+  }
 
-  function calculate() {
-    var normalised = input.join('').replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
+  document.getElementById('equals').addEventListener('click', calculateResult);
+
+  function calculateResult() {
+    var expression = normaliseInputs();
+    var result = evaluate(expression);
+    if (isInvalidResult(result)) {
+      handleCalculationError();
+    } else {
+      inputs = [normaliseResult(result)];
+      displayInputs();
+    }
+  }
+
+  function normaliseInputs() {
+    return inputs.join('').replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
+  }
+
+  function evaluate(expression) {
     try {
-      var result = String(eval(normalised)).replace(/-/g, '−');
-      if (Number.isNaN(result)) {
-        display.innerText = "Error";
-        input = ['0'];
-      } else {
-        input = [result];
-        updateDisplay();
-      }
+      return eval(expression);
     } catch (error) {
-      display.innerText = "Error";
-      input = ['0'];
+      return error;
     }
+  }
+
+  function isInvalidResult(result) {
+    return isNaN(result) || result === Infinity || result === -Infinity;
+  }
+
+  function handleCalculationError() {
+    display.innerText = 'Error';
+    resetInputs();
+  }
+
+  function normaliseResult(result) {
+    return String(result).replace(/-/g, '−');
   }
 
 });
