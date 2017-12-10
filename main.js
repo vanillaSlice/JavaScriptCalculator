@@ -2,7 +2,7 @@ window.addEventListener('load', function () {
 
   'use strict';
 
-  var display = document.getElementById('display');
+  var display = document.querySelector('.screen-text');
   var inputs = ['0'];
 
   document.getElementById('ac').addEventListener('click', clearAll);
