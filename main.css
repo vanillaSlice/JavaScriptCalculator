@@ -128,6 +128,11 @@ body {
   text-shadow: none;
 }
 
+.alt-btn {
+  color: #ff66ff;
+  text-shadow: 0 0 0.5rem #ff66ff;
+}
+
 .keys.left {
   width: 75%;
 }
@@ -148,12 +153,6 @@ body {
 
 .keys.right .key {
   width: 100%;
-}
-
-#ac,
-#ce {
-  color: #ff66ff;
-  text-shadow: 0 0 0.5rem #ff66ff;
 }
 
 #zero-key {
