@@ -1,11 +1,21 @@
-window.addEventListener('load', function () {
+window.addEventListener('load', function() {
 
   'use strict';
 
-  var display = document.querySelector('.screen-text');
   var inputs = ['0'];
 
-  document.getElementById('ac').addEventListener('click', clearAll);
+  /*
+   * DOM elements.
+   */
+  var screenTextElement = document.querySelector('.screen-text');
+  var acBtnElement = document.querySelector('#ac');
+  var ceBtnElement = document.querySelector('#ce');
+  var numberBtnElements = [].slice.call(document.querySelectorAll('.number.btn'));
+  var operationBtnElements = [].slice.call(document.querySelectorAll('.operation.btn'));
+  var decimalPointBtnElement = document.querySelector('#decimal-point');
+  var equalsBtnElement = document.querySelector('#equals');
+
+  acBtnElement.addEventListener('click', clearAll);
 
   function clearAll() {
     resetInputs();
@@ -17,10 +27,10 @@ window.addEventListener('load', function () {
   }
 
   function displayInputs() {
-    display.innerText = inputs.join('');
+    screenTextElement.innerText = inputs.join('');
   }
 
-  document.getElementById('ce').addEventListener('click', clearEntry);
+  ceBtnElement.addEventListener('click', clearEntry);
 
   function clearEntry() {
     if (hasMoreThanOneInput()) {
@@ -39,10 +49,9 @@ window.addEventListener('load', function () {
     inputs.pop();
   }
 
-  var numberButtons = document.getElementsByClassName('number');
-  for (var i = 0, length = numberButtons.length; i < length; i++) {
-    numberButtons.item(i).addEventListener('click', appendNumber);
-  }
+  numberBtnElements.forEach(function(btn) {
+    btn.addEventListener('click', appendNumber);
+  });
 
   function appendNumber() {
     var number = this.innerText;
@@ -73,10 +82,9 @@ window.addEventListener('load', function () {
     inputs[inputs.length - 1] += value;
   }
 
-  var operationButtons = document.getElementsByClassName('operation');
-  for (i = 0, length = operationButtons.length; i < length; i++) {
-    operationButtons.item(i).addEventListener('click', appendOperation);
-  }
+  operationBtnElements.forEach(function(btn) {
+    btn.addEventListener('click', appendOperation);
+  });
 
   function appendOperation() {
     var operation = this.innerText;
@@ -97,7 +105,7 @@ window.addEventListener('load', function () {
     }
   }
 
-  document.getElementById('decimal-point').addEventListener('click', appendDecimalPoint);
+  decimalPointBtnElement.addEventListener('click', appendDecimalPoint);
 
   function appendDecimalPoint() {
     var last = getLastInput();
@@ -111,7 +119,7 @@ window.addEventListener('load', function () {
     return value.indexOf('.') !== -1
   }
 
-  document.getElementById('equals').addEventListener('click', calculateResult);
+  equalsBtnElement.addEventListener('click', calculateResult);
 
   function calculateResult() {
     var expression = normaliseInputs();
@@ -141,7 +149,7 @@ window.addEventListener('load', function () {
   }
 
   function handleCalculationError() {
-    display.innerText = 'Error';
+    screenTextElement.innerText = 'Error';
     resetInputs();
   }
 
