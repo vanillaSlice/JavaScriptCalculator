@@ -118,6 +118,7 @@ body {
   font-family: inherit;
   font-size: 2.4rem;
   outline: none;
+  padding: 0.1rem 0.7rem 0.2rem;
   text-shadow: 0 0 0.5rem #66ffff;
   width: 100%;
 }
