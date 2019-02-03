@@ -1,5 +1,6 @@
 {
   "name": "JavaScript Calculator",
+  "short_name": "Calculator",
   "icons": [{
       "src": "./android-chrome-192x192.png",
       "sizes": "192x192",
