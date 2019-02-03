@@ -1,16 +1,24 @@
+/*
+ * Variables
+ */
+
 let inputs = ['0'];
 
 /*
  * DOM Elements
  */
 
-const screenTextElement = document.querySelector('.screen-text');
-const acBtnElement = document.querySelector('#ac');
-const ceBtnElement = document.querySelector('#ce');
-const numberBtnElements = [].slice.call(document.querySelectorAll('.number.btn'));
-const operationBtnElements = [].slice.call(document.querySelectorAll('.operation.btn'));
-const decimalPointBtnElement = document.querySelector('#decimal-point');
-const equalsBtnElement = document.querySelector('#equals');
+const screenTextElement = document.querySelector('.js-screen-text');
+const acBtnElement = document.querySelector('.js-ac-btn');
+const ceBtnElement = document.querySelector('.js-ce-btn');
+const numberBtnElements = [].slice.call(document.querySelectorAll('.js-number-btn'));
+const operationBtnElements = [].slice.call(document.querySelectorAll('.js-operation-btn'));
+const decimalPointBtnElement = document.querySelector('.js-decimal-point-btn');
+const equalsBtnElement = document.querySelector('.js-equals-btn');
+
+/*
+ * Functions
+ */
 
 function resetInputs() {
   inputs = ['0'];
@@ -24,8 +32,6 @@ function clearAll() {
   resetInputs();
   displayInputs();
 }
-
-acBtnElement.addEventListener('click', clearAll);
 
 function hasMoreThanOneInput() {
   return inputs.length > 1;
@@ -44,8 +50,6 @@ function clearEntry() {
   }
 }
 
-ceBtnElement.addEventListener('click', clearEntry);
-
 function getLastInput() {
   return inputs[inputs.length - 1];
 }
@@ -62,8 +66,8 @@ function appendToLastInput(value) {
   inputs[inputs.length - 1] += value;
 }
 
-function appendNumber() {
-  const number = this.innerText;
+function appendNumber(e) {
+  const number = e.target.innerText;
   const last = getLastInput();
   if (isAnOperation(last)) {
     inputs.push(number);
@@ -75,10 +79,6 @@ function appendNumber() {
   displayInputs();
 }
 
-numberBtnElements.forEach((btn) => {
-  btn.addEventListener('click', appendNumber);
-});
-
 function appendMinus() {
   const last = getLastInput();
   if (last === '0' && !hasMoreThanOneInput()) {
@@ -88,8 +88,8 @@ function appendMinus() {
   }
 }
 
-function appendOperation() {
-  const operation = this.innerText;
+function appendOperation(e) {
+  const operation = e.target.innerText;
   if (operation === '−') {
     appendMinus();
   } else if (!isAnOperation(getLastInput())) {
@@ -98,12 +98,8 @@ function appendOperation() {
   displayInputs();
 }
 
-operationBtnElements.forEach((btn) => {
-  btn.addEventListener('click', appendOperation);
-});
-
 function containsDecimalPoint(value) {
-  return value.indexOf('.') !== -1;
+  return value.includes('.');
 }
 
 function appendDecimalPoint() {
@@ -113,8 +109,6 @@ function appendDecimalPoint() {
     displayInputs();
   }
 }
-
-decimalPointBtnElement.addEventListener('click', appendDecimalPoint);
 
 function normaliseInputs() {
   return inputs.join('').replace(/÷/g, '/').replace(/×/g, '*').replace(/−/g, '-');
@@ -152,4 +146,13 @@ function calculateResult() {
   }
 }
 
+/*
+ * Initialise
+ */
+
+acBtnElement.addEventListener('click', clearAll);
+ceBtnElement.addEventListener('click', clearEntry);
+numberBtnElements.forEach(btn => btn.addEventListener('click', appendNumber));
+operationBtnElements.forEach(btn => btn.addEventListener('click', appendOperation));
+decimalPointBtnElement.addEventListener('click', appendDecimalPoint);
 equalsBtnElement.addEventListener('click', calculateResult);
