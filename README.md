@@ -6,7 +6,7 @@
 
 *Advanced Front End Development Project for FreeCodeCamp.*
 
-A JavaScript calculator. A deployed version can be viewed [here](https://vanillaslice.github.io/JavaScriptCalculator/).
+A JavaScript calculator. A deployed version can be viewed [here](https://javascriptcalculator.mikelowe.xyz/).
 
 ## Screenshot
 
