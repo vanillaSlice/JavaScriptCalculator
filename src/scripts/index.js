@@ -1,3 +1,5 @@
+import { version } from '../../package.json';
+
 /*
  * Variables
  */
@@ -15,6 +17,7 @@ const numberBtnElements = [].slice.call(document.querySelectorAll('.js-number-bt
 const operationBtnElements = [].slice.call(document.querySelectorAll('.js-operation-btn'));
 const decimalPointBtnElement = document.querySelector('.js-decimal-point-btn');
 const equalsBtnElement = document.querySelector('.js-equals-btn');
+const versionElement = document.querySelector('.js-version');
 
 /*
  * Functions
@@ -156,3 +159,4 @@ numberBtnElements.forEach(btn => btn.addEventListener('click', appendNumber));
 operationBtnElements.forEach(btn => btn.addEventListener('click', appendOperation));
 decimalPointBtnElement.addEventListener('click', appendDecimalPoint);
 equalsBtnElement.addEventListener('click', calculateResult);
+versionElement.innerText = version;
