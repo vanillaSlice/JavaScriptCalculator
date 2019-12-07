@@ -1,7 +1,7 @@
 # JavaScript Calculator
 
 [![Latest Release](https://img.shields.io/github/release/vanillaSlice/JavaScriptCalculator.svg)](https://github.com/vanillaSlice/JavaScriptCalculator/releases/latest)
-[![Build Status](https://img.shields.io/travis/vanillaSlice/JavaScriptCalculator/master.svg)](https://travis-ci.org/vanillaSlice/JavaScriptCalculator)
+[![Build Status](https://img.shields.io/travis/com/vanillaSlice/JavaScriptCalculator/master.svg)](https://travis-ci.com/vanillaSlice/JavaScriptCalculator)
 [![License](https://img.shields.io/github/license/vanillaSlice/JavaScriptCalculator.svg)](LICENSE)
 
 *Advanced Front End Development Project for FreeCodeCamp.*
